@@ -1,0 +1,80 @@
+# Git Ignore Rules for ZenByte Solutions
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+.env.*.local
+
+# Maven
+target/
+*.jar
+*.war
+*.ear
+.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.release.properties
+release.properties
+
+# Java
+*.class
+*.classpath
+.factorypath
+
+# Spring Boot
+application-local.properties
+application-dev.properties
+application-prod.properties
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node (if used for frontend build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+build/
+dist/
+bin/
+
+# Temporary files
+*.tmp
+temp/
+.cache/
+
+# OS specific
+Thumbs.db
+.DS_Store
+
+# IDE specific
+.classpath
+.project
+.settings/
+*.iml
+*.iws
+*.ipr
+
+# Gradle (if used)
+.gradle/
+gradle/
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Development environment
+.env
+config.local.properties
+credentials.json

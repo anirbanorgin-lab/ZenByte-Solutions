@@ -1,0 +1,22 @@
+<svg viewBox="0 0 360 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ZenByte Solutions">
+  <defs>
+    <linearGradient id="markBgL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="ringL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Mark -->
+  <rect x="0" y="10" width="80" height="80" rx="20" fill="url(#markBgL)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.35"/>
+  <path d="M58 24 A28 28 0 0 1 62 50" fill="none" stroke="url(#ringL)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="62" cy="50" r="3" fill="#ffffff"/>
+  <text x="40" y="58" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#ffffff" letter-spacing="-1">ZB</text>
+  <!-- Wordmark -->
+  <text x="100" y="52" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="36" font-weight="800" fill="#ffffff" letter-spacing="-0.5">ZenByte</text>
+  <text x="100" y="76" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#ffffff" fill-opacity="0.75" letter-spacing="4">SOLUTIONS</text>
+  <text x="100" y="94" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="10" font-weight="500" fill="#ffffff" fill-opacity="0.55" letter-spacing="2.5">INNOVATE " INTEGRATE " ELEVATE</text>
+</svg>

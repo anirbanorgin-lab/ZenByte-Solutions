@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: zenbyte-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_change_this
+      MYSQL_DATABASE: zenbyte_db
+      MYSQL_USER: zenbyte
+      MYSQL_PASSWORD: zenbyte_password_change_this
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - zenbyte-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: zenbyte-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/zenbyte_db
+      SPRING_DATASOURCE_USERNAME: zenbyte
+      SPRING_DATASOURCE_PASSWORD: zenbyte_password_change_this
+      JWT_SECRET: your_secure_jwt_secret_key_for_docker
+      JAVA_OPTS: "-Xmx512m -Xms512m"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - zenbyte-network
+
+  nodejs:
+    build:
+      context: ./nodejs
+      dockerfile: Dockerfile
+    container_name: zenbyte-nodejs
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      JAVA_API_URL: http://backend:8080
+      FRONTEND_PATH: /app/frontend
+      DOMAIN: zenbytesolutions.in
+      CORS_ORIGINS: http://localhost:3000,https://zenbytesolutions.in
+    volumes:
+      - ./frontend:/app/frontend:ro
+    depends_on:
+      - backend
+    networks:
+      - zenbyte-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: zenbyte-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: zenbyte
+      PMA_PASSWORD: zenbyte_password_change_this
+    depends_on:
+      - mysql
+    networks:
+      - zenbyte-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  zenbyte-network:
+    driver: bridge
+
+# Usage:
+#   docker compose up -d --build
+#
+# Access:
+#   Website (Node.js):  http://localhost:3000
+#   Java API (direct):  http://localhost:8080/api  (internal in Docker network)
+#   Health check:       http://localhost:3000/api/health
+#   PhpMyAdmin:         http://localhost:8081

@@ -1,0 +1,23 @@
+{
+  "name": "zenbyte-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ZenByte Solutions — Full Stack (Node.js + Java Spring Boot + MySQL)",
+  "scripts": {
+    "install:all": "npm install && cd nodejs && npm install",
+    "dev": "concurrently -n java,node -c blue,green \"npm run dev:java\" \"npm run dev:node\"",
+    "dev:java": "cd backend && mvn spring-boot:run",
+    "dev:node": "cd nodejs && npm run dev",
+    "start:node": "cd nodejs && npm start",
+    "build:java": "cd backend && mvn clean package -DskipTests",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
