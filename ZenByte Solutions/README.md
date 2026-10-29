@@ -121,6 +121,18 @@ Deploy to **zenbytesolutions.in** on Hostinger VPS — see [HOSTINGER_DEPLOY.md]
 
 Production uses **Node.js on port 80** proxying to Java internally.
 
+## Netlify Frontend Deployment
+
+The static frontend can also be deployed directly to Netlify from the `frontend/` folder.
+
+1. Create a new site in Netlify.
+2. Set the repository root to the project root.
+3. Set the publish directory to `frontend`.
+4. No build command is required.
+5. Add a `_redirects` file in `frontend/` for SPA routing.
+
+Netlify will publish the site from the `frontend/` directory and preserve the existing static pages.
+
 ## Environment Variables
 
 ### Node.js (`nodejs/.env`)

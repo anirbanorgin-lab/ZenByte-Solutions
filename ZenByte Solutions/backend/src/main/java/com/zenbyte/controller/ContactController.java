@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/contacts")
+@Recd "c:\Users\ANIRBAN\Music\ZenByte Solutions\backend"
+# Find Maven installation
+$env:Path -split ';' | Where-Object { Test-Path "$_\mvn*" }
+
+# Or install Maven via Chocolatey
+choco install maven -ystController
+@RequestMapping("/api/contacts")
 public class ContactController {
     @Autowired
     private ContactService contactService;
